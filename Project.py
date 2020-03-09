@@ -17,6 +17,14 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle(self.title)
 
+        def background():
+            bg = QImage("111.jpg")
+            bg1 = bg.scaled(QSize(700,500))
+            palette = QPalette()
+            palette.setBrush(QPalette.Window,QBrush(bg1))
+            self.setPalette(palette)
+        background()
+
         
         def buttons():
             self.button = QPushButton('Continue',self)
@@ -31,17 +39,19 @@ class MainWindow(QMainWindow):
             self.button1.setToolTip("Exit Application")
             self.button1.clicked.connect(self.Cancel)
             self.button1.resize(100,50)
-            self.button1.move(350,400)
+            self.button1.move(400,400)
         buttons()
 
         def labels():
             self.label = QLabel("Programmed by: Donald G. Jardiolin and John Ryan L. Montecalvo",self)
             self.label.resize(490,20)
-            self.label.move(180,450)
+            self.label.move(190,450)
+            self.label.setStyleSheet("color: white")
 
             self.label1 = QLabel("Technological Institute of the Philippines",self)
             self.label1.resize(400,20)
             self.label1.move(240,470)
+            self.label1.setStyleSheet("color: white")
         labels()
 
         self.Window()
@@ -62,7 +72,7 @@ class MainWindow(QMainWindow):
     def Window_2(self):
         self.wndw2 = Window2()
         self.wndw2.show()
-        MainWindow.close(self)
+        MainWindow.hide(self)
 
 
     
@@ -73,7 +83,7 @@ class Window2(QMainWindow):
         self.setGeometry(350,100,700,500)
         
         self.button = QPushButton('',self)
-        self.button.setIcon(QIcon('Nike.png'))
+        self.button.setIcon(QIcon('Sun.png'))
         self.button.setToolTip("Description\nDescription")
         self.button.setIconSize(QSize(100, 100))
         self.button.resize(100,100)
@@ -93,7 +103,7 @@ class Window2(QMainWindow):
     def Window_3(self):
         self.wndw3 = Window3()
         self.wndw3.show()
-        Window2.close(self)
+        Window2.hide(self)
 
     def back(self):
         Window2.close(self)
@@ -120,7 +130,7 @@ class Window3(QMainWindow):
     @pyqtSlot()
 
     def back(self):
-        Window3.close(self)
+        Window3.hide(self)
         self.Window2()
 
     def Window2(self):
