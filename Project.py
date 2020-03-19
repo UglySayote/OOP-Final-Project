@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         self.width = 700
         self.height = 500
         self.setWindowTitle(self.title)
+        self.setWindowIcon(QIcon('planet.ico'))
 
         def background():
             bg = QImage("planet-space.jpg")
@@ -33,10 +34,10 @@ class MainWindow(QMainWindow):
         def info():
             self.label1 = QLabel("ALMOST THERE SPACE RANGER!",self)
             self.label1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
-                                'QLabel { font: bold italic 20px}'
+                                'QLabel { font: bold italic 30px}'
                                 'QLabel { color: white}')
-            self.label1.move(197,10)
-            self.label1.resize(500,40)
+            self.label1.move(110,100)
+            self.label1.resize(510,40)
 
             self.label2 = QLabel("          Hold on to your seat space ranger \n"
                             " In order to proceed on your next journey\n"
@@ -46,7 +47,7 @@ class MainWindow(QMainWindow):
             self.label2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { font-size: 15px}'
                                 'QLabel { color: white}')
-            self.label2.move(210,45)
+            self.label2.move(210,150)
             self.label2.resize(300,200)
         info()
 
@@ -88,22 +89,6 @@ class MainWindow(QMainWindow):
             self.button1.resize(100,50)
             self.button1.move(400,400)
 
-            self.button2 = QPushButton("About",self)
-            self.button2.move(600,0)
-            #self.button2.clicked.connect(self.about)
-            self.button2.setToolTip('Learn about this program')
-            self.button2.setStyleSheet('QPushButton { background-color: transparent }'
-                                    'QPushButton:hover { background-color: rgb(117, 220, 255) }'
-                                    'QPushButton:hover { border-style: inset }'
-                                    'QPushButton:hover { color: black }'
-                                    'QPushButton:pressed { background-color: rgb(82, 149, 171) }'
-                                    'QPushButton { color: white }'
-                                    'QPushButton { font-family: Comic Sans MS}'
-                                    'QPushButton { border-style: outset }'
-                                    'QPushButton { border-width: 1px }'
-                                    'QPushButton { border-radius: 10px }'
-                                    'QPushButton { padding: 5px }'
-                                    'QPushButton { font: bold 12px }')
         buttons()
 
         def labels():
@@ -133,8 +118,6 @@ class MainWindow(QMainWindow):
 
     @pyqtSlot()
 
-    #def about(self):
-
     def Cancel(self):
         Confirmation = QMessageBox.warning(self,"Warning","Quit Application?", QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
         if Confirmation == QMessageBox.Yes:
@@ -151,13 +134,13 @@ class MainWindow(QMainWindow):
         self.wndw2.show()
         MainWindow.hide(self)
 
-#class About(QMainWindow)
 
 class SurveyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Educational Solar System for Kids!")
         self.setGeometry(550,150,300,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         
 
         def background():
@@ -254,6 +237,7 @@ class SurveyWindow(QMainWindow):
             self.textbox1 = QLineEdit(self)
             self.textbox1.move(80,215)
             self.textbox1.resize(200,20)
+            self.textbox1.setToolTip('Enter your name')
             self.textbox1.setStyleSheet('QLineEdit { background-color: transparent}'
                                         'QLineEdit { color: white}'
                                         'QLineEdit { font-family: Comic Sans MS}'
@@ -264,6 +248,7 @@ class SurveyWindow(QMainWindow):
             self.textbox2 = QLineEdit(self)
             self.textbox2.move(80,260)
             self.textbox2.resize(200,20)
+            self.textbox2.setToolTip('Enter your age')
             self.textbox2.setStyleSheet('QLineEdit { background-color: transparent}'
                                         'QLineEdit { color: white}'
                                         'QLineEdit { font-family: Comic Sans MS}'
@@ -274,6 +259,7 @@ class SurveyWindow(QMainWindow):
             self.textbox3 = QLineEdit(self)
             self.textbox3.move(120,305)
             self.textbox3.resize(160,20)
+            self.textbox3.setToolTip('Enter your grade level (ex. Grade 1)')
             self.textbox3.setStyleSheet('QLineEdit { background-color: transparent}'
                                         'QLineEdit { color: white}'
                                         'QLineEdit { font-family: Comic Sans MS}'
@@ -284,6 +270,7 @@ class SurveyWindow(QMainWindow):
             self.textbox4 = QLineEdit(self)
             self.textbox4.move(145,345)
             self.textbox4.resize(135,20)
+            self.textbox4.setToolTip('Enter the name of your school')
             self.textbox4.setStyleSheet('QLineEdit { background-color: transparent}'
                                         'QLineEdit { color: white}'
                                         'QLineEdit { font-family: Comic Sans MS}'
@@ -332,7 +319,7 @@ class SurveyWindow(QMainWindow):
                 pass
 
         elif submit == QMessageBox.Yes and name != "" and age != "" and gradelevel != "" and school != "":
-            database = SqliteDict("info.db", autocommit=True)
+            database = SqliteDict("users.db", autocommit=True)
             inf = database.get('data',[])
             temporary = {"Name: ":name, "Age: ":age, "Grade Level":gradelevel,"School: ":school}
             inf.append(temporary)
@@ -349,6 +336,7 @@ class Window2(QMainWindow):
         super().__init__()
         self.setWindowTitle("The Solar System")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
 
         def background():
             bg = QImage("stars-space.png")
@@ -560,6 +548,7 @@ class WindowSun(QMainWindow):
 
         self.setWindowTitle("Sun")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -663,6 +652,7 @@ class WindowMercury(QMainWindow):
 
         self.setWindowTitle("Mercury")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -700,7 +690,7 @@ class WindowMercury(QMainWindow):
         def text():
             self.text = QLabel("Mercury",self)
             self.text.move(300,50)
-            self.text.resize(150,50)
+            self.text.resize(130,40)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -714,9 +704,9 @@ class WindowMercury(QMainWindow):
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text2 = QLabel("• Mercury is so hot that you could burn to \n death during daytime.",self) 
-            self.text2.move(300,150)
-            self.text2.resize(330,100)
+            self.text2 = QLabel("• Mercury is so hot that you could burn to\n   death during daytime.",self) 
+            self.text2.move(300,160)
+            self.text2.resize(340,60)
             self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -730,17 +720,17 @@ class WindowMercury(QMainWindow):
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text4 = QLabel("• Mercury is the smallest planet in the solar system.",self)
+            self.text4 = QLabel("• Mercury is the smallest planet in the\n   Solar System.",self)
             self.text4.move(300,280)
-            self.text4.resize(380,20)
+            self.text4.resize(320,50)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
-                                'QLabel { font-size: 16px}')
+                                'QLabel { font-size: 17px}')
 
             self.text5 = QLabel("• Mercury does not have any moons or rings.",self)
-            self.text5.move(300,310)
-            self.text5.resize(370,50)
+            self.text5.move(300,340)
+            self.text5.resize(370,30)
             self.text5.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -764,6 +754,7 @@ class WindowVenus(QMainWindow):
 
         self.setWindowTitle("Venus")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -801,14 +792,14 @@ class WindowVenus(QMainWindow):
         def text():
             self.text = QLabel("Venus",self)
             self.text.move(300,50)
-            self.text.resize(150,50)
+            self.text.resize(100,40)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 30px}')
 
             self.text1 = QLabel("• It is 67 million miles away from the Sun.",self)
-            self.text1.move(300,130)
+            self.text1.move(300,120)
             self.text1.resize(360,20)
             self.text1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
@@ -816,37 +807,38 @@ class WindowVenus(QMainWindow):
                                 'QLabel { font-size: 17px}')
 
             self.text2 = QLabel("• You can't live here because it is way too hot.",self) 
-            self.text2.move(300,170)
-            self.text2.resize(310,20)
+            self.text2.move(300,160)
+            self.text2.resize(370,20)
             self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
             self.text3 = QLabel("• Venus is the second brightest natural object in the sky.",self)
-            self.text3.move(300,210)
+            self.text3.move(300,200)
             self.text3.resize(370,20)
             self.text3.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text4 = QLabel("• Referred to as the 'MORNING STAR' \n and 'EVENING STAR'. ",self)
+            self.text4 = QLabel("• Referred to as the 'Morning star' and\n  'Evening star'. ",self)
             self.text4.move(300,240)
-            self.text4.resize(380,70)
+            self.text4.resize(330,50)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
-                                'QLabel { font-size: 16px}')
+                                'QLabel { font-size: 17px}')
 
-            self.text5 = QLabel("• It has mountains, venus quakes, \n valley and volcanoes.",self)
-            self.text5.move(300,320)
-            self.text5.resize(380,70)
+            self.text5 = QLabel("• It has mountains, venus quakes, valley and\n   volcanoes.",self)
+            self.text5.move(300,300)
+            self.text5.resize(360,50)
             self.text5.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
         text()
+
 
     @pyqtSlot()
 
@@ -864,6 +856,7 @@ class WindowEarth(QMainWindow):
 
         self.setWindowTitle("Earth")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -901,14 +894,14 @@ class WindowEarth(QMainWindow):
         def text():
             self.text = QLabel("Earth",self)
             self.text.move(300,50)
-            self.text.resize(150,50)
+            self.text.resize(90,50)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 30px}')
 
             self.text1 = QLabel("• We are 93 million miles away from the Sun.",self)
-            self.text1.move(300,130)
+            self.text1.move(300,120)
             self.text1.resize(360,20)
             self.text1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
@@ -916,31 +909,31 @@ class WindowEarth(QMainWindow):
                                 'QLabel { font-size: 17px}')
 
             self.text2 = QLabel("• Only planet that have living things.",self) 
-            self.text2.move(300,170)
-            self.text2.resize(350,20)
+            self.text2.move(300,160)
+            self.text2.resize(350,25)
             self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
             self.text3 = QLabel("• Earth is 4.54 billion years old.",self)
-            self.text3.move(300,210)
+            self.text3.move(300,200)
             self.text3.resize(370,20)
             self.text3.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text4 = QLabel("• Earth has a perfect combination of weather, \n temperature and atmosphere to keep \n us alive. ",self)
+            self.text4 = QLabel("• Earth has a perfect combination of weather,\n   temperature and atmosphere to keep\n   us alive. ",self)
             self.text4.move(300,245)
             self.text4.resize(380,65)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
-                                'QLabel { font-size: 16px}')
+                                'QLabel { font-size: 17px}')
 
             self.text5 = QLabel("• The Earth's shape is oblate spheroid.",self)
-            self.text5.move(300,320)
+            self.text5.move(300,330)
             self.text5.resize(380,20)
             self.text5.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
@@ -964,6 +957,7 @@ class WindowMars(QMainWindow):
 
         self.setWindowTitle("Mars")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -1001,46 +995,46 @@ class WindowMars(QMainWindow):
         def text():
             self.text = QLabel("Mars",self)
             self.text.move(300,50)
-            self.text.resize(120,50)
+            self.text.resize(80,50)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 30px}')
 
             self.text1 = QLabel("• Mars is 139 million miles away from the Sun.",self)
-            self.text1.move(300,130)
-            self.text1.resize(360,20)
+            self.text1.move(300,120)
+            self.text1.resize(365,20)
             self.text1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text2 = QLabel("• Mars has the highest mountains and deepest \n canyon in the whole solar system.",self) 
-            self.text2.move(300,170)
+            self.text2 = QLabel("• Mars has the highest mountains and deepest\n   canyon in the whole Solar System.",self) 
+            self.text2.move(300,160)
             self.text2.resize(380,50)
             self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text3 = QLabel("• Mars is a dusty, cold, desert world with \n a very thin atmposhere.",self)
+            self.text3 = QLabel("• Mars is a dusty, cold, desert world with\n   a very thin atmposhere.",self)
             self.text3.move(300,230)
-            self.text3.resize(370,50)
+            self.text3.resize(340,50)
             self.text3.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text4 = QLabel("• Mars once had streams, rivers, lakes \n and an ocean. ",self)
+            self.text4 = QLabel("• Mars once had streams, rivers, lakes\n   and an ocean. ",self)
             self.text4.move(300,290)
-            self.text4.resize(380,50)
+            self.text4.resize(310,50)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text5 = QLabel("• Mars is also called the 'RED PLANET'.",self)
-            self.text5.move(300,350)
+            self.text5 = QLabel("• Mars is also called the 'Red planet'.",self)
+            self.text5.move(300,360)
             self.text5.resize(380,20)
             self.text5.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
@@ -1065,6 +1059,7 @@ class WindowJupiter(QMainWindow):
 
         self.setWindowTitle("Jupiter")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -1102,31 +1097,31 @@ class WindowJupiter(QMainWindow):
         def text():
             self.text = QLabel("Jupiter",self)
             self.text.move(300,50)
-            self.text.resize(150,50)
+            self.text.resize(120,50)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 30px}')
 
             self.text1 = QLabel("• Jupiter is 483 million miles away from the Sun.",self)
-            self.text1.move(300,130)
-            self.text1.resize(360,20)
+            self.text1.move(300,120)
+            self.text1.resize(400,20)
             self.text1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text2 = QLabel("• It only takes 10 hours to go from night to day in jupiter.",self) 
+            self.text2 = QLabel("• It only takes 10 hours to go from night to day\n   in Jupiter.",self) 
             self.text2.move(300,160)
-            self.text2.resize(380,50)
+            self.text2.resize(390,50)
             self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text3 = QLabel("• There is no solid surface here, it is just \n  one huge ocean of hydrogen and water.",self)
-            self.text3.move(300,220)
-            self.text3.resize(370,70)
+            self.text3 = QLabel("• There is no solid surface here, it is just one\n   huge ocean of hydrogen and water.",self)
+            self.text3.move(300,230)
+            self.text3.resize(370,50)
             self.text3.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -1134,7 +1129,7 @@ class WindowJupiter(QMainWindow):
 
             self.text4 = QLabel("• Jupiter is the fastest spinning planet. ",self)
             self.text4.move(300,300)
-            self.text4.resize(380,50)
+            self.text4.resize(340,20)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -1166,6 +1161,7 @@ class WindowSaturn(QMainWindow):
 
         self.setWindowTitle("Saturn")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -1203,47 +1199,39 @@ class WindowSaturn(QMainWindow):
         def text():
             self.text = QLabel("Saturn",self)
             self.text.move(300,50)
-            self.text.resize(130,50)
+            self.text.resize(100,50)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 30px}')
 
             self.text1 = QLabel("• Saturn is 888 million miles away from the Sun.",self)
-            self.text1.move(300,130)
+            self.text1.move(300,120)
             self.text1.resize(380,20)
             self.text1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text2 = QLabel("• It only takes 10 hours to go from night to day in jupiter.",self) 
-            self.text2.move(300,160)
-            self.text2.resize(380,50)
-            self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
-                                'QLabel { background-color: black}'
-                                'QLabel { color: white}'
-                                'QLabel { font-size: 17px}')
-
-            self.text3 = QLabel("• Saturn is ver similar to Jupiter because \n it's atmosphere is an ocean of liquid chemicals.",self)
-            self.text3.move(300,220)
+            self.text3 = QLabel("• Saturn is very similar to Jupiter because it's\n   atmosphere is an ocean of liquid chemicals.",self)
+            self.text3.move(300,160)
             self.text3.resize(370,60)
             self.text3.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text4 = QLabel("• The ring of Saturn is made up of rock, ice \n and tiny dust. ",self)
-            self.text4.move(300,300)
-            self.text4.resize(380,50)
+            self.text4 = QLabel("• The ring of Saturn is made up of rock, ice\n   and tiny dust. ",self)
+            self.text4.move(300,230)
+            self.text4.resize(350,50)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text5 = QLabel("• It is a large gas planet made mostly of hydrogen \n and helium.",self)
-            self.text5.move(300,360)
-            self.text5.resize(400,50)
+            self.text5 = QLabel("• It is a large gas planet made mostly of\n   hydrogen and helium.",self)
+            self.text5.move(300,300)
+            self.text5.resize(330,50)
             self.text5.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -1266,6 +1254,7 @@ class WindowUranus(QMainWindow):
 
         self.setWindowTitle("Uranus")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -1303,15 +1292,15 @@ class WindowUranus(QMainWindow):
         def text():
             self.text = QLabel("Uranus",self)
             self.text.move(300,50)
-            self.text.resize(150,50)
+            self.text.resize(120,50)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 30px}')
 
             self.text1 = QLabel("• Uranus is 1,784 million miles away from the Sun.",self)
-            self.text1.move(300,130)
-            self.text1.resize(360,20)
+            self.text1.move(300,120)
+            self.text1.resize(400,20)
             self.text1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -1319,31 +1308,31 @@ class WindowUranus(QMainWindow):
 
             self.text2 = QLabel("• It is almost identical or same with Neptune.",self) 
             self.text2.move(300,160)
-            self.text2.resize(380,50)
+            self.text2.resize(380,20)
             self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text3 = QLabel("• Uranus has 11 rings made up of dust, ice \n and a bits of rocks.",self)
-            self.text3.move(300,220)
-            self.text3.resize(370,70)
+            self.text3 = QLabel("• Uranus has 11 rings made up of dust, ice\n   and a bits of rocks.",self)
+            self.text3.move(300,200)
+            self.text3.resize(340,50)
             self.text3.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text4 = QLabel("• Uranus could possible have trillions of \n large diamonds. ",self)
-            self.text4.move(300,300)
-            self.text4.resize(360,50)
+            self.text4 = QLabel("• Uranus could possible have trillions of\n   large diamonds. ",self)
+            self.text4.move(300,270)
+            self.text4.resize(330,50)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text5 = QLabel("• Uranus is known as the 2nd coldest planet in \n the solar system.",self)
-            self.text5.move(300,360)
-            self.text5.resize(385,50)
+            self.text5 = QLabel("• Uranus is known as the 2nd coldest planet in\n   the Solar System.",self)
+            self.text5.move(300,340)
+            self.text5.resize(350,50)
             self.text5.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
@@ -1366,6 +1355,7 @@ class WindowNeptune(QMainWindow):
 
         self.setWindowTitle("Neptune")
         self.setGeometry(350,100,700,500)
+        self.setWindowIcon(QIcon('planet.ico'))
         self.backbutton = QPushButton('Back',self)
         self.backbutton.setStyleSheet('QPushButton { background-color: transparent }'
                             'QPushButton:hover { background-color: rgb(117, 220, 255) }'
@@ -1403,37 +1393,37 @@ class WindowNeptune(QMainWindow):
         def text():
             self.text = QLabel("Neptune",self)
             self.text.move(300,50)
-            self.text.resize(150,50)
+            self.text.resize(120,50)
             self.text.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 30px}')
 
-            self.text1 = QLabel("• Neptune is 2,794 million miles away from the \n Sun.",self)
-            self.text1.move(300,130)
-            self.text1.resize(380,40)
+            self.text1 = QLabel("• Neptune is 2,794 million miles away from the\n   Sun.",self)
+            self.text1.move(300,120)
+            self.text1.resize(380,50)
             self.text1.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
             self.text2 = QLabel("• Neptune was discovered in September 23,1846 .",self) 
-            self.text2.move(300,160)
-            self.text2.resize(390,50)
+            self.text2.move(300,190)
+            self.text2.resize(390,20)
             self.text2.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text3 = QLabel("• Neptune is the coldest planet in the solar \n system.",self)
-            self.text3.move(300,220)
-            self.text3.resize(380,70)
+            self.text3 = QLabel("• Neptune is the coldest planet in the Solar\n   System.",self)
+            self.text3.move(300,230)
+            self.text3.resize(360,50)
             self.text3.setStyleSheet('QLabel { font-family: Comic Sans MS}'
                                 'QLabel { background-color: black}'
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text4 = QLabel("• The gravity of neptune is very similar to the \n Earth. ",self)
+            self.text4 = QLabel("• The gravity of neptune is very similar to the\n   Earth. ",self)
             self.text4.move(300,300)
             self.text4.resize(380,50)
             self.text4.setStyleSheet('QLabel { font-family: Comic Sans MS}'
@@ -1441,7 +1431,7 @@ class WindowNeptune(QMainWindow):
                                 'QLabel { color: white}'
                                 'QLabel { font-size: 17px}')
 
-            self.text5 = QLabel("• Neptune consists of 'icy' materials such as \n water, ammonia and methane .",self)
+            self.text5 = QLabel("• Neptune consists of 'icy' materials such as\n   water, ammonia and methane .",self)
             self.text5.move(300,360)
             self.text5.resize(380,60)
             self.text5.setStyleSheet('QLabel { font-family: Comic Sans MS}'
